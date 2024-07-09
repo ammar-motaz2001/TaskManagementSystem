@@ -1,7 +1,7 @@
 import express from 'express'
 import { addTask, deleteTask, getAllTasks, getSingleTask, updateTask } from './task.controller.js'
 import { verifyToken } from '../../middleware/verifyToken.js'
-const taskRouter=express.Router()
+const taskRouter=express.Router() //refers to how an application's endpoints respond to client requests.
 
 taskRouter.route('/tasks')
 .post(verifyToken,addTask)

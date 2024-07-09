@@ -6,5 +6,5 @@ let userRouter=express.Router()
 
 userRouter.post('/signup',checkEmailExist,signUp)
 userRouter.post("/signin",signIn)
-
+// userRouter.get("/users",getAllusers)
 export default userRouter

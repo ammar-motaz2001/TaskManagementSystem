@@ -1,6 +1,5 @@
 import { DataTypes } from "sequelize";
 import dbConnection from "../dbConnection.js";
-import { userModel } from "./user.model.js";
 
 export let taskModel=dbConnection.define('task',{
     title:{
@@ -18,8 +17,4 @@ export let taskModel=dbConnection.define('task',{
         defaultValue:'Pending'
     },
  })
-userModel.hasMany(taskModel,{
-    onDelete:'CASCADE',
-    onUpdate:'CASCADE'
-})
-taskModel.belongsTo(userModel)
+

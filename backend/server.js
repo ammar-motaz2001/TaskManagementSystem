@@ -1,5 +1,5 @@
-process.on("uncaughtException",()=>{
-    console.log("error in code")
+process.on("uncaughtException",(err)=>{
+    console.log("error in code",err)
 })
 import express from 'express'
 import dbConnection from './database/dbConnection.js'
@@ -8,9 +8,12 @@ import userRouter from './modules/user/user.routes.js'
 import dotenv from 'dotenv'
 import { AppError } from './utils/appError.js'
 import { globalError } from './middleware/globlError.js'
+import cors from 'cors'
+
 dotenv.config()
 const app = express()
-const port = 3003
+const port = process.env.PORT||3003
+app.use(cors())
 dbConnection.sync({alter:true}) // alter:true => becouse if any update in my database show 
 app.use(express.json()) //body parser
 app.use(taskRouter)

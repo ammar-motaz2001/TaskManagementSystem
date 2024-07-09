@@ -4,6 +4,7 @@ import * as bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken'
 import { catchError } from "../../middleware/catchError.js";
 import { AppError } from "../../utils/appError.js";
+import { taskModel } from "../../database/models/task.model.js";
 
 const signUp=catchError(async(req,res)=>{
     let user=await userModel.create(req.body) 
@@ -22,9 +23,23 @@ const signUp=catchError(async(req,res)=>{
      }else{  
         return next(new AppError("Invalid Email or Password",401))
     }
-   
+    
 })
+
+// const getAllusers=catchError(async(req,res)=>{
+//     let {count,rows}=await userModel.findAndCountAll({
+//         include:
+//         {
+//             model:taskModel,
+//         }
+//     })
+//    return res.json({message:"success",numofusers:count,Allusers:rows})
+
+// })
+   
+
 export{
     signUp,
-    signIn
+    signIn,
+    // getAllusers
 }
